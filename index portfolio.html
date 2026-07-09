@@ -1,0 +1,1242 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Manojkumar S – Data Analyst & ML Engineer</title>
+<meta name="description" content="Manojkumar S – Data Analyst, ML Engineer & BI Developer. B.Tech IT 2026, Chennai. Python, SQL, Power BI, Tableau, Machine Learning."/>
+<meta name="keywords" content="Data Analyst, Machine Learning, Power BI, SQL, Python, Tableau, Chennai, Portfolio"/>
+<meta property="og:title" content="Manojkumar S – Data Analyst Portfolio"/>
+<meta property="og:description" content="Turning raw data into business decisions. Data ScienceIntern at Cognifyz Technologies."/>
+<meta property="og:type" content="website"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+/* ============================================================
+   DESIGN TOKENS
+   ============================================================ */
+:root {
+  --blue: #1a56db;
+  --blue-mid: #2563eb;
+  --purple: #7c3aed;
+  --cyan: #06b6d4;
+  --indigo: #4338ca;
+  --grad: linear-gradient(135deg, #1a56db 0%, #7c3aed 100%);
+  --grad-soft: linear-gradient(135deg, rgba(26,86,219,.12) 0%, rgba(124,58,237,.12) 100%);
+
+  --bg: #ffffff;
+  --bg-alt: #f8faff;
+  --bg-card: #ffffff;
+  --border: #e5e9f4;
+  --text: #111827;
+  --text-2: #374151;
+  --text-muted: #6b7280;
+  --nav-bg: rgba(255,255,255,0.85);
+  --shadow: 0 4px 24px rgba(26,86,219,.08);
+  --shadow-hover: 0 12px 40px rgba(26,86,219,.18);
+
+  --r: 14px;
+  --r-sm: 8px;
+  --r-lg: 20px;
+  --font: 'Inter', system-ui, sans-serif;
+  --font-display: 'Manrope', 'Inter', sans-serif;
+  --transition: .25s cubic-bezier(.4,0,.2,1);
+}
+[data-theme="dark"] {
+  --bg: #0d1117;
+  --bg-alt: #161b22;
+  --bg-card: #1a2233;
+  --border: #262f3d;
+  --text: #f0f6fc;
+  --text-2: #c9d1d9;
+  --text-muted: #8b949e;
+  --nav-bg: rgba(13,17,23,0.9);
+  --shadow: 0 4px 24px rgba(0,0,0,.4);
+  --shadow-hover: 0 12px 40px rgba(26,86,219,.3);
+}
+
+/* ============================================================
+   RESET & BASE
+   ============================================================ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.6;transition:background var(--transition),color var(--transition);overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+button{cursor:pointer;border:none;background:none;font-family:inherit}
+
+/* ============================================================
+   SCROLL PROGRESS
+   ============================================================ */
+#scroll-progress{position:fixed;top:0;left:0;height:3px;background:var(--grad);width:0%;z-index:9999;transition:width .1s}
+
+/* ============================================================
+   LOADING SCREEN
+   ============================================================ */
+#loader{position:fixed;inset:0;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:10000;transition:opacity .5s,visibility .5s}
+#loader.hidden{opacity:0;visibility:hidden;pointer-events:none}
+.loader-logo{font-family:var(--font-display);font-size:2rem;font-weight:800;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:-1px;animation:pulse 1.5s ease-in-out infinite}
+.loader-bar{width:200px;height:3px;background:var(--border);border-radius:99px;margin-top:1.5rem;overflow:hidden}
+.loader-fill{height:100%;background:var(--grad);border-radius:99px;animation:load 1.8s ease forwards}
+@keyframes load{0%{width:0}100%{width:100%}}
+@keyframes pulse{0%,100%{opacity:.7}50%{opacity:1}}
+
+/* ============================================================
+   NAVBAR
+   ============================================================ */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:.9rem 0;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);background:var(--nav-bg);border-bottom:1px solid transparent;transition:all var(--transition)}
+nav.scrolled{border-bottom-color:var(--border);box-shadow:0 2px 20px rgba(26,86,219,.06)}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:var(--font-display);font-weight:800;font-size:1.2rem;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:-.5px}
+.nav-links{display:flex;gap:1.8rem;align-items:center}
+.nav-links a{font-size:.88rem;font-weight:500;color:var(--text-muted);transition:color var(--transition);position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:2px;background:var(--grad);border-radius:99px;transform:scaleX(0);transition:transform var(--transition)}
+.nav-links a:hover,.nav-links a.active{color:var(--blue)}
+.nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1)}
+.nav-actions{display:flex;gap:.75rem;align-items:center}
+.btn-icon{width:36px;height:36px;border-radius:50%;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--text-muted);transition:all var(--transition)}
+.btn-icon:hover{background:var(--bg-alt);color:var(--text);border-color:var(--blue)}
+.hamburger{display:none;flex-direction:column;gap:5px;padding:4px}
+.hamburger span{display:block;width:22px;height:2px;background:var(--text);border-radius:99px;transition:all var(--transition)}
+.mobile-menu{display:none;position:fixed;inset:0;top:60px;background:var(--bg);z-index:999;padding:2rem;flex-direction:column;gap:1.2rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-size:1.1rem;font-weight:600;color:var(--text-2);padding:.75rem 0;border-bottom:1px solid var(--border)}
+
+/* ============================================================
+   SHARED LAYOUT
+   ============================================================ */
+.container{max-width:1200px;margin:0 auto;padding:0 1.5rem}
+section{padding:6rem 0}
+.section-eyebrow{font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:.75rem}
+.section-title{font-family:var(--font-display);font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;line-height:1.15;letter-spacing:-.02em;color:var(--text)}
+.section-sub{font-size:1.05rem;color:var(--text-muted);margin-top:.75rem;max-width:560px}
+.section-header{margin-bottom:3.5rem}
+
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.75rem 1.5rem;border-radius:var(--r-sm);font-weight:600;font-size:.9rem;transition:all var(--transition);white-space:nowrap}
+.btn-primary{background:var(--grad);color:#fff;box-shadow:0 4px 20px rgba(26,86,219,.3)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(26,86,219,.4)}
+.btn-outline{background:transparent;color:var(--blue);border:1.5px solid var(--blue)}
+.btn-outline:hover{background:var(--blue);color:#fff;transform:translateY(-2px)}
+.btn-ghost{background:var(--bg-alt);color:var(--text);border:1px solid var(--border)}
+.btn-ghost:hover{background:var(--border)}
+
+.card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r);padding:1.75rem;box-shadow:var(--shadow);transition:all var(--transition)}
+.card:hover{box-shadow:var(--shadow-hover);transform:translateY(-4px);border-color:rgba(26,86,219,.2)}
+
+.tag{display:inline-flex;align-items:center;padding:.25rem .75rem;background:var(--grad-soft);color:var(--blue);border-radius:99px;font-size:.75rem;font-weight:600;letter-spacing:.02em}
+
+/* ============================================================
+   FADE ANIMATIONS
+   ============================================================ */
+.fade-up{opacity:0;transform:translateY(28px);transition:opacity .65s cubic-bezier(.4,0,.2,1),transform .65s cubic-bezier(.4,0,.2,1)}
+.fade-up.visible{opacity:1;transform:translateY(0)}
+.fade-in{opacity:0;transition:opacity .65s ease}
+.fade-in.visible{opacity:1}
+.delay-1{transition-delay:.1s}.delay-2{transition-delay:.2s}.delay-3{transition-delay:.3s}.delay-4{transition-delay:.4s}.delay-5{transition-delay:.5s}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+#hero{min-height:100vh;display:flex;align-items:center;padding-top:80px;position:relative;overflow:hidden}
+.hero-glow{position:absolute;top:-20%;left:-10%;width:60vw;height:60vw;background:radial-gradient(ellipse,rgba(26,86,219,.12) 0%,transparent 70%);pointer-events:none;animation:float 8s ease-in-out infinite}
+.hero-glow-2{position:absolute;bottom:-20%;right:-10%;width:50vw;height:50vw;background:radial-gradient(ellipse,rgba(124,58,237,.1) 0%,transparent 70%);pointer-events:none;animation:float 10s ease-in-out infinite reverse}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-30px)}}
+.hero-grid{display:grid;grid-template-columns:1fr auto;gap:4rem;align-items:center;position:relative}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:.5rem;padding:.4rem 1rem;background:var(--grad-soft);border:1px solid rgba(26,86,219,.2);border-radius:99px;font-size:.8rem;font-weight:600;color:var(--blue);margin-bottom:1.5rem}
+.hero-eyebrow span{width:6px;height:6px;border-radius:50%;background:var(--blue);animation:blink 2s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:.4}50%{opacity:1}}
+.hero-name{font-family:var(--font-display);font-size:clamp(2.8rem,7vw,5rem);font-weight:800;line-height:1.05;letter-spacing:-.04em;color:var(--text)}
+.hero-name span{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-typing{font-family:var(--font-display);font-size:clamp(1.1rem,2.5vw,1.5rem);font-weight:600;color:var(--text-muted);margin:.75rem 0;min-height:2.2em}
+.cursor{display:inline-block;width:2px;height:1.2em;background:var(--blue);margin-left:2px;animation:caret .8s step-end infinite;vertical-align:text-bottom}
+@keyframes caret{0%,100%{opacity:1}50%{opacity:0}}
+.hero-desc{font-size:1.05rem;color:var(--text-muted);max-width:520px;line-height:1.7;margin-bottom:2rem}
+.hero-actions{display:flex;gap:1rem;flex-wrap:wrap}
+.hero-stats{display:flex;gap:2rem;margin-top:2.5rem;flex-wrap:wrap}
+.hero-stat{text-align:center}
+.hero-stat-num{font-family:var(--font-display);font-size:1.8rem;font-weight:800;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1.1}
+.hero-stat-label{font-size:.78rem;color:var(--text-muted);font-weight:500;margin-top:.25rem}
+.hero-avatar{width:280px;height:280px;border-radius:var(--r-lg);background:var(--grad-soft);border:2px solid rgba(26,86,219,.2);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;flex-shrink:0}
+.hero-avatar-inner{font-size:6rem;text-align:center;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-family:var(--font-display);font-weight:800;line-height:1}
+.hero-avatar::before{content:'';position:absolute;inset:0;background:var(--grad-soft);opacity:.5}
+.hero-scroll{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;color:var(--text-muted);font-size:.75rem;font-weight:500;animation:bounce 2s ease-in-out infinite}
+@keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(6px)}}
+.scroll-arrow{width:20px;height:20px;border-right:2px solid var(--text-muted);border-bottom:2px solid var(--text-muted);transform:rotate(45deg)}
+
+/* ============================================================
+   ABOUT
+   ============================================================ */
+#about{background:var(--bg-alt)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:3.5rem;align-items:start}
+.about-text p{color:var(--text-2);line-height:1.8;margin-bottom:1.25rem;font-size:1rem}
+.about-highlights{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.5rem}
+.highlight-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-sm);padding:1.25rem;transition:all var(--transition)}
+.highlight-card:hover{border-color:rgba(26,86,219,.3);transform:translateY(-3px)}
+.highlight-icon{width:40px;height:40px;border-radius:10px;background:var(--grad-soft);display:flex;align-items:center;justify-content:center;font-size:1.2rem;margin-bottom:.75rem}
+.highlight-title{font-weight:700;font-size:.9rem;color:var(--text);margin-bottom:.25rem}
+.highlight-desc{font-size:.82rem;color:var(--text-muted)}
+.about-timeline{display:flex;flex-direction:column;gap:1.5rem}
+.timeline-item{display:flex;gap:1.25rem;position:relative}
+.timeline-dot{width:14px;height:14px;border-radius:50%;background:var(--grad);flex-shrink:0;margin-top:5px;position:relative;z-index:1}
+.timeline-line{position:absolute;left:6px;top:22px;bottom:-24px;width:2px;background:var(--border)}
+.timeline-year{font-size:.78rem;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.06em}
+.timeline-event{font-weight:600;font-size:.95rem;color:var(--text);margin:.15rem 0}
+.timeline-place{font-size:.83rem;color:var(--text-muted)}
+
+/* ============================================================
+   SKILLS
+   ============================================================ */
+#skills{}
+.skills-categories{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.5rem}
+.skill-category{padding:1.75rem;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r);box-shadow:var(--shadow);transition:all var(--transition)}
+.skill-category:hover{border-color:rgba(26,86,219,.25);box-shadow:var(--shadow-hover);transform:translateY(-4px)}
+.skill-cat-title{display:flex;align-items:center;gap:.75rem;font-weight:700;font-size:.95rem;color:var(--text);margin-bottom:1.25rem}
+.skill-cat-icon{width:36px;height:36px;border-radius:10px;background:var(--grad-soft);display:flex;align-items:center;justify-content:center;font-size:1rem}
+.skill-item{margin-bottom:1rem}
+.skill-header{display:flex;justify-content:space-between;margin-bottom:.4rem;font-size:.83rem;font-weight:500;color:var(--text-2)}
+.skill-bar{height:6px;background:var(--border);border-radius:99px;overflow:hidden}
+.skill-fill{height:100%;background:var(--grad);border-radius:99px;width:0%;transition:width 1.2s cubic-bezier(.4,0,.2,1)}
+.skills-chart-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:3rem}
+.chart-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r);padding:1.75rem;box-shadow:var(--shadow)}
+.chart-title{font-weight:700;font-size:1rem;color:var(--text);margin-bottom:1.25rem}
+
+/* ============================================================
+   EXPERIENCE
+   ============================================================ */
+#experience{background:var(--bg-alt)}
+.exp-card{display:grid;grid-template-columns:auto 1fr;gap:1.5rem;position:relative;padding-bottom:2.5rem}
+.exp-card:not(:last-child)::after{content:'';position:absolute;left:24px;top:50px;bottom:0;width:2px;background:var(--border)}
+.exp-dot-wrap{width:50px;height:50px;border-radius:50%;background:var(--bg-card);border:2px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0;z-index:1;position:relative}
+.exp-content{}
+.exp-period{font-size:.78rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--blue);margin-bottom:.4rem}
+.exp-role{font-family:var(--font-display);font-size:1.15rem;font-weight:700;color:var(--text)}
+.exp-company{font-size:.9rem;font-weight:500;color:var(--text-muted);margin-bottom:1rem}
+.exp-bullets{display:flex;flex-direction:column;gap:.5rem}
+.exp-bullet{display:flex;gap:.75rem;font-size:.88rem;color:var(--text-2);line-height:1.6}
+.exp-bullet::before{content:'▹';color:var(--blue);font-size:.85rem;flex-shrink:0;margin-top:.1rem}
+
+/* ============================================================
+   PROJECTS
+   ============================================================ */
+#projects{}
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:1.75rem}
+.project-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow);transition:all var(--transition);display:flex;flex-direction:column}
+.project-card:hover{box-shadow:var(--shadow-hover);transform:translateY(-5px);border-color:rgba(26,86,219,.2)}
+.project-header{height:160px;background:var(--grad-soft);display:flex;align-items:center;justify-content:center;font-size:3rem;position:relative;overflow:hidden}
+.project-header::after{content:'';position:absolute;inset:0;background:var(--grad);opacity:.08}
+.project-body{padding:1.5rem;flex:1;display:flex;flex-direction:column}
+.project-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1rem}
+.project-name{font-family:var(--font-display);font-size:1.1rem;font-weight:700;color:var(--text);margin-bottom:.5rem;line-height:1.3}
+.project-problem{font-size:.82rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--blue);margin-bottom:.4rem}
+.project-desc{font-size:.88rem;color:var(--text-muted);line-height:1.65;flex:1}
+.project-impact{margin-top:1rem;padding:.75rem 1rem;background:var(--grad-soft);border-radius:var(--r-sm);font-size:.82rem;color:var(--blue);font-weight:600}
+.project-actions{display:flex;gap:.6rem;margin-top:1.25rem;flex-wrap:wrap}
+.project-actions .btn{font-size:.78rem;padding:.5rem .9rem}
+
+/* ============================================================
+   CERTIFICATIONS
+   ============================================================ */
+#certifications{background:var(--bg-alt)}
+.certs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.5rem}
+.cert-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r);padding:1.5rem;box-shadow:var(--shadow);transition:all var(--transition);position:relative;overflow:hidden}
+.cert-card:hover{box-shadow:var(--shadow-hover);transform:translateY(-4px)}
+.cert-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad)}
+.cert-badge{width:50px;height:50px;border-radius:12px;background:var(--grad-soft);display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:1rem}
+.cert-title{font-weight:700;font-size:.95rem;color:var(--text);margin-bottom:.35rem;line-height:1.35}
+.cert-provider{font-size:.83rem;color:var(--blue);font-weight:600;margin-bottom:.25rem}
+.cert-year{font-size:.78rem;color:var(--text-muted)}
+.cert-desc{font-size:.82rem;color:var(--text-muted);margin-top:.75rem;line-height:1.55}
+
+/* ============================================================
+   ACHIEVEMENTS
+   ============================================================ */
+#achievements{}
+.achievements-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.5rem}
+.ach-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r);padding:1.5rem;text-align:center;box-shadow:var(--shadow);transition:all var(--transition)}
+.ach-card:hover{box-shadow:var(--shadow-hover);transform:translateY(-4px)}
+.ach-icon{font-size:2.2rem;margin-bottom:1rem;display:block}
+.ach-title{font-weight:700;font-size:.95rem;color:var(--text);margin-bottom:.4rem}
+.ach-desc{font-size:.82rem;color:var(--text-muted);line-height:1.55}
+
+/* ============================================================
+   CONTACT
+   ============================================================ */
+#contact{background:var(--bg-alt)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:3.5rem;align-items:start}
+.contact-info{}
+.contact-info p{color:var(--text-muted);line-height:1.7;margin-bottom:1.75rem;font-size:1rem}
+.contact-links{display:flex;flex-direction:column;gap:1rem}
+.contact-link{display:flex;align-items:center;gap:1rem;padding:1rem 1.25rem;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-sm);text-decoration:none;color:var(--text);transition:all var(--transition)}
+.contact-link:hover{border-color:var(--blue);background:var(--bg);transform:translateX(4px)}
+.contact-link-icon{width:38px;height:38px;border-radius:10px;background:var(--grad-soft);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+.contact-link-label{font-size:.75rem;color:var(--text-muted);font-weight:500;text-transform:uppercase;letter-spacing:.06em}
+.contact-link-value{font-weight:600;font-size:.88rem;color:var(--text)}
+.contact-form{display:flex;flex-direction:column;gap:1.1rem}
+.form-group{display:flex;flex-direction:column;gap:.45rem}
+.form-group label{font-size:.82rem;font-weight:600;color:var(--text-2)}
+.form-input{padding:.85rem 1.1rem;border:1.5px solid var(--border);border-radius:var(--r-sm);background:var(--bg-card);color:var(--text);font-family:var(--font);font-size:.9rem;transition:all var(--transition);outline:none}
+.form-input:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(26,86,219,.1)}
+textarea.form-input{resize:vertical;min-height:120px}
+.form-note{font-size:.75rem;color:var(--text-muted);margin-top:.25rem}
+.form-success{display:none;padding:1rem 1.25rem;background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.3);border-radius:var(--r-sm);color:#059669;font-weight:600;font-size:.9rem;text-align:center}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer{background:var(--bg-card);border-top:1px solid var(--border);padding:2.5rem 0}
+.footer-inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.footer-logo{font-family:var(--font-display);font-weight:800;font-size:1.1rem;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.footer-links{display:flex;gap:1.5rem;flex-wrap:wrap}
+.footer-links a{font-size:.83rem;color:var(--text-muted);transition:color var(--transition)}
+.footer-links a:hover{color:var(--blue)}
+.footer-copy{font-size:.8rem;color:var(--text-muted);text-align:center;width:100%}
+.back-top{position:fixed;bottom:1.75rem;right:1.75rem;width:44px;height:44px;border-radius:50%;background:var(--grad);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.1rem;box-shadow:0 4px 20px rgba(26,86,219,.3);transition:all var(--transition);opacity:0;pointer-events:none;z-index:500}
+.back-top.visible{opacity:1;pointer-events:all}
+.back-top:hover{transform:translateY(-3px);box-shadow:0 8px 30px rgba(26,86,219,.4)}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media(max-width:900px){
+  .nav-links{display:none}
+  .hamburger{display:flex}
+  .hero-grid{grid-template-columns:1fr;text-align:center}
+  .hero-avatar{display:none}
+  .hero-actions{justify-content:center}
+  .hero-stats{justify-content:center}
+  .about-grid{grid-template-columns:1fr}
+  .contact-grid{grid-template-columns:1fr}
+  .skills-chart-grid{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+  section{padding:4rem 0}
+  .projects-grid{grid-template-columns:1fr}
+  .about-highlights{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- SCROLL PROGRESS -->
+<div id="scroll-progress"></div>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-logo">MK</div>
+  <div class="loader-bar"><div class="loader-fill"></div></div>
+</div>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="#hero" class="nav-logo">Manojkumar S</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#certifications">Certifications</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="btn-icon" id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+      <button class="hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#about" onclick="closeMobile()">About</a>
+  <a href="#skills" onclick="closeMobile()">Skills</a>
+  <a href="#experience" onclick="closeMobile()">Experience</a>
+  <a href="#projects" onclick="closeMobile()">Projects</a>
+  <a href="#certifications" onclick="closeMobile()">Certifications</a>
+  <a href="#achievements" onclick="closeMobile()">Achievements</a>
+  <a href="#contact" onclick="closeMobile()">Contact</a>
+</div>
+
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<section id="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-glow-2"></div>
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <div class="hero-eyebrow fade-up">
+          <span></span>
+          Available for Opportunities
+        </div>
+        <h1 class="hero-name fade-up delay-1">
+          Hi, I'm<br/>
+          <span>Manojkumar S</span>
+        </h1>
+        <div class="hero-typing fade-up delay-2">
+          <span id="typed-text"></span><span class="cursor"></span>
+        </div>
+        <p class="hero-desc fade-up delay-3">
+          Information Technology undergraduate (2026) passionate about transforming raw data into actionable business intelligence. Specialized in machine learning, data analytics, and building impactful dashboards that drive decisions.
+        </p>
+        <div class="hero-actions fade-up delay-4">
+          <a href="#projects" class="btn btn-primary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            View My Work
+          </a>
+          <a href="#contact" class="btn btn-outline">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            Hire Me
+          </a>
+          <a href="Manoj Kumar Resume262org.pdf"
+   class="btn btn-ghost"
+   download="Manoj Kumar Resume262org.pdf">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+        <polyline points="7 10 12 15 17 10"/>
+        <line x1="12" y1="15" x2="12" y2="3"/>
+    </svg>
+    Resume
+</a>
+        </div>
+        <div class="hero-stats fade-up delay-5">
+          <div class="hero-stat">
+            <div class="hero-stat-num" data-count="6">0</div>
+            <div class="hero-stat-label">Projects</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-num" data-count="4">0</div>
+            <div class="hero-stat-label">Certifications</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-num" data-count="92" data-suffix="%">0</div>
+            <div class="hero-stat-label">ML Accuracy</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-num" data-count="1">0</div>
+            <div class="hero-stat-label">Data Science Internship</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-avatar fade-in delay-2">
+        <div class="hero-avatar-inner">
+          <img src="WhatsApp Image 2026-05-05 at 7.11.16 PM.jpeg"  style="width: 150%;height:100%;object-fit:cover;border-radius:50%;">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    Scroll<div class="scroll-arrow"></div>
+  </div>
+</section>
+
+<!-- ============================================================
+     ABOUT
+     ============================================================ -->
+<section id="about">
+  <div class="container">
+    <div class="section-header fade-up">
+      <div class="section-eyebrow">About Me</div>
+      <h2 class="section-title">Bridging Data &amp;<br/>Business Decisions</h2>
+      <p class="section-sub">A quick background on who I am, where I've studied, and what drives me to work in data analytics.</p>
+    </div>
+    <div class="about-grid">
+      <div class="about-text fade-up">
+        <p>
+          Detailed oriented and Motivated Information Technology  (2022–2026), based in Chennai, Tamil Nadu. I combine a strong foundation in software engineering with practical machine learning and data analytics experience gained at Cognifyz Technologies.
+        </p>
+        <p>
+          My work focuses on building end-to-end data solutions — from ingesting and cleaning messy datasets to engineering features, training predictive models, and presenting insights through clean, interactive dashboards. I believe data only creates value when the story it tells is clear to every stakeholder.
+        </p>
+        <p>
+          Beyond the numbers, I enjoy building intuitive web interfaces that make data accessible, and I'm currently deepening my knowledge in Power BI, advanced SQL, and cloud-based analytics on AWS.
+        </p>
+        <div class="about-highlights">
+          <div class="highlight-card fade-up delay-1">
+            <div class="highlight-icon">📊</div>
+            <div class="highlight-title">Data Analysis</div>
+            <div class="highlight-desc">EDA, statistical analysis, and business insight generation</div>
+          </div>
+          <div class="highlight-card fade-up delay-2">
+            <div class="highlight-icon">🤖</div>
+            <div class="highlight-title">Machine Learning</div>
+            <div class="highlight-desc">Predictive modelling, XGBoost, content-based filtering</div>
+          </div>
+          <div class="highlight-card fade-up delay-3">
+            <div class="highlight-icon">📈</div>
+            <div class="highlight-title">BI &amp; Dashboards</div>
+            <div class="highlight-desc">Power BI, Tableau, Streamlit interactive reporting</div>
+          </div>
+          <div class="highlight-card fade-up delay-4">
+            <div class="highlight-icon">🛠</div>
+            <div class="highlight-title">Full-Stack Context</div>
+            <div class="highlight-desc">Flask, HTML/CSS/JS for data-driven web applications</div>
+          </div>
+        </div>
+      </div>
+      <div class="about-timeline fade-up delay-2">
+        <h3 style="font-family:var(--font-display);font-weight:700;margin-bottom:1.5rem;font-size:1.1rem">Education &amp; Journey</h3>
+        <div class="timeline-item">
+          <div style="position:relative">
+            <div class="timeline-dot"></div>
+            <div class="timeline-line"></div>
+          </div>
+          <div>
+            <div class="timeline-year">2022 – 2026</div>
+            <div class="timeline-event">B.Tech – Information Technology</div>
+            <div class="timeline-place">Mahendra Institute of Technology, Namakkal · CGPA 7.73</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div style="position:relative">
+            <div class="timeline-dot"></div>
+            <div class="timeline-line"></div>
+          </div>
+          <div>
+            <div class="timeline-year">3- Months</div>
+            <div class="timeline-event">data Science Intern</div>
+            <div class="timeline-place">Cognifyz Technologies </div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div style="position:relative">
+            <div class="timeline-dot"></div>
+            <div class="timeline-line"></div>
+          </div>
+          <div>
+            <div class="timeline-year">2025</div>
+            <div class="timeline-event">Power BI Certification</div>
+            <div class="timeline-place">E-Learning Platform</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div style="position:relative">
+            <div class="timeline-dot"></div>
+          </div>
+          <div>
+            <div class="timeline-year">2024</div>
+            <div class="timeline-event">Infosys Springboard – Data Science &amp; Deep Learning</div>
+            <div class="timeline-place">Infosys Springboard</div>
+          </div>
+        </div>
+        <div style="margin-top:2rem">
+          <h3 style="font-family:var(--font-display);font-weight:700;margin-bottom:1rem;font-size:1rem;color:var(--text-muted)">Soft Skills</h3>
+          <div style="display:flex;flex-wrap:wrap;gap:.6rem">
+            <span class="tag">Problem Solving</span>
+            <span class="tag">Analytical Thinking</span>
+            <span class="tag">Communication</span>
+            <span class="tag">Teamwork</span>
+            <span class="tag">Adaptability</span>
+            <span class="tag">Presentation</span>
+            <span class="tag">Time Management</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SKILLS
+     ============================================================ -->
+<section id="skills">
+  <div class="container">
+    <div class="section-header fade-up">
+      <div class="section-eyebrow">Technical Competencies</div>
+      <h2 class="section-title">Skills &amp; Tools</h2>
+      <p class="section-sub">A breakdown of every tool, language, and methodology I use to deliver end-to-end data solutions.</p>
+    </div>
+
+    <div class="skills-categories">
+
+      <div class="skill-category fade-up delay-1">
+        <div class="skill-cat-title"><div class="skill-cat-icon">💻</div>Programming Languages</div>
+        <div class="skill-item"><div class="skill-header"><span>Python</span><span>90%</span></div><div class="skill-bar"><div class="skill-fill" data-width="90"></div></div></div>
+        <div class="skill-item"><div class="skill-header"><span>SQL</span><span>85%</span></div><div class="skill-bar"><div class="skill-fill" data-width="85"></div></div></div>
+        <div class="skill-item"><div class="skill-header"><span>JavaScript</span><span>75%</span></div><div class="skill-bar"><div class="skill-fill" data-width="75"></div></div></div>
+      </div>
+
+      <div class="skill-category fade-up delay-2">
+        <div class="skill-cat-title"><div class="skill-cat-icon">📊</div>Data Analysis</div>
+        <div class="skill-item"><div class="skill-header"><span>Pandas &amp; NumPy</span><span>88%</span></div><div class="skill-bar"><div class="skill-fill" data-width="88"></div></div></div>
+        <div class="skill-item"><div class="skill-header"><span>Exploratory Data Analysis</span><span>85%</span></div><div class="skill-bar"><div class="skill-fill" data-width="85"></div></div></div>
+        <div class="skill-item"><div class="skill-header"><span>Feature Engineering</span><span>80%</span></div><div class="skill-bar"><div class="skill-fill" data-width="80"></div></div></div>
+        <div class="skill-item"><div class="skill-header"><span>Statistical Analysis</span><span>78%</span></div><div class="skill-bar"><div class="skill-fill" data-width="78"></div></div></div>
+      </div>
+
+      <div class="skill-category fade-up delay-3">
+        <div class="skill-cat-title"><div class="skill-cat-icon">🤖</div>Machine Learning</div>
+        <div class="skill-item"><div class="skill-header"><span>Scikit-learn</span><span>85%</span></div><div class="skill-bar"><div class="skill-fill" data-width="85"></div></div></div>
+        <div class="skill-item"><div class="skill-header"><span>XGBoost</span><span>82%</span></div><div class="skill-bar"><div class="skill-fill" data-width="82"></div></div></div>
+        <div class="skill-item"><div class="skill-header"><span>Deep Learning / CNN</span><span>70%</span></div><div class="skill-bar"><div class="skill-fill" data-width="70"></div></div></div>
+        <div class="skill-item"><div class="skill-header"><span>NLP / TF-IDF</span><span>72%</span></div><div class="skill-bar"><div class="skill-fill" data-width="72"></div></div></div>
+      </div>
+
+      <div class="skill-category fade-up delay-4">
+        <div class="skill-cat-title"><div class="skill-cat-icon">📈</div>BI &amp; Visualization</div>
+        <div class="skill-item"><div class="skill-header"><span>Power BI</span><span>80%</span></div><div class="skill-bar"><div class="skill-fill" data-width="80"></div></div></div>
+        <div class="skill-item"><div class="skill-header"><span>Tableau</span><span>72%</span></div><div class="skill-bar"><div class="skill-fill" data-width="72"></div></div></div>
+        <div class="skill-item"><div class="skill-header"><span>MS Excel</span><span>82%</span></div><div class="skill-bar"><div class="skill-fill" data-width="82"></div></div></div>
+        <div class="skill-item"><div class="skill-header"><span>Matplotlib / Seaborn</span><span>86%</span></div><div class="skill-bar"><div class="skill-fill" data-width="86"></div></div></div>
+      </div>
+
+      <div class="skill-category fade-up delay-1">
+        <div class="skill-cat-title"><div class="skill-cat-icon">🗄️</div>Databases</div>
+        <div class="skill-item"><div class="skill-header"><span>MySQL</span><span>82%</span></div><div class="skill-bar"><div class="skill-fill" data-width="82"></div></div></div>
+        <div class="skill-item"><div class="skill-header"><span>PostgreSQL</span><span>75%</span></div><div class="skill-bar"><div class="skill-fill" data-width="75"></div></div></div>
+        <div class="skill-item"><div class="skill-header"><span>MongoDB</span><span>68%</span></div><div class="skill-bar"><div class="skill-fill" data-width="68"></div></div></div>
+      </div>
+
+      <div class="skill-category fade-up delay-2">
+        <div class="skill-cat-title"><div class="skill-cat-icon">🔧</div>Tools &amp; Frameworks</div>
+        <div class="skill-item"><div class="skill-header"><span>Flask / Streamlit</span><span>80%</span></div><div class="skill-bar"><div class="skill-fill" data-width="80"></div></div></div>
+        <div class="skill-item"><div class="skill-header"><span>Git &amp; GitHub</span><span>82%</span></div><div class="skill-bar"><div class="skill-fill" data-width="82"></div></div></div>
+        <div class="skill-item"><div class="skill-header"><span>Jupyter / Google Colab</span><span>88%</span></div><div class="skill-bar"><div class="skill-fill" data-width="88"></div></div></div>
+        <div class="skill-item"><div class="skill-header"><span>Agile / Jira</span><span>70%</span></div><div class="skill-bar"><div class="skill-fill" data-width="70"></div></div></div>
+      </div>
+
+    </div>
+
+    <div class="skills-chart-grid">
+      <div class="chart-card fade-up delay-1">
+        <div class="chart-title">Skill Domain Distribution</div>
+        <canvas id="skillPieChart" height="220"></canvas>
+      </div>
+      <div class="chart-card fade-up delay-2">
+        <div class="chart-title">Core Proficiencies</div>
+        <canvas id="skillRadarChart" height="220"></canvas>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     EXPERIENCE
+     ============================================================ -->
+<section id="experience">
+  <div class="container">
+    <div class="section-header fade-up">
+      <div class="section-eyebrow">Professional Experience</div>
+      <h2 class="section-title">Where I've Worked</h2>
+      <p class="section-sub">Real-world machine learning work delivered in an agile, industry-facing environment.</p>
+    </div>
+
+    <div class="exp-card fade-up">
+      <div class="exp-dot-wrap">🏢</div>
+      <div class="exp-content">
+        <div class="exp-period">3-Months</div>
+        <div class="exp-role">Data Science Intern</div>
+        <div class="exp-company">Cognifyz Technologies </div>
+        <div class="exp-bullets">
+          <div class="exp-bullet">Built a content-based Recipe Recommendation System using Python, TF-IDF, and Cosine Similarity, delivering personalized suggestions from user-supplied ingredients with &gt;90% recommendation relevance in testing.</div>
+          <div class="exp-bullet">Designed and deployed a Demand Forecasting Model using XGBoost Regressor trained on historical sales data, achieving 92% forecasting accuracy and directly supporting inventory planning workflows.</div>
+          <div class="exp-bullet">Performed end-to-end data preprocessing pipelines: data cleaning, feature engineering, and EDA using Python, Pandas, and NumPy across multiple real-world business datasets.</div>
+          <div class="exp-bullet">Built, evaluated, and optimized ML models using Scikit-learn, applying cross-validation, hyperparameter tuning, and performance metrics (RMSE, MAE, R²) for production-quality reliability.</div>
+          <div class="exp-bullet">Developed interactive analytical reports and data visualizations using Matplotlib and Seaborn to communicate model insights and support data-driven decision-making to stakeholders.</div>
+          <div class="exp-bullet">Operated within an agile learning environment, collaborating on iterative model improvements, best practices, and peer code reviews.</div>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.25rem">
+          <span class="tag">Python</span><span class="tag">Machine Learning</span><span class="tag">Deep Learning</span><span class="tag">Pandas</span><span class="tag">NumPy</span><span class="tag">Matplotlib</span><span class="tag">Seaborn</span><span class="tag">EDA</span><span class="tag">Data Analysis</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PROJECTS
+     ============================================================ -->
+<section id="projects">
+  <div class="container">
+    <div class="section-header fade-up">
+      <div class="section-eyebrow">Case Studies</div>
+      <h2 class="section-title">Projects That<br/>Deliver Results</h2>
+      <p class="section-sub">Each project was built to solve a real business or user problem, not just to learn a tool.</p>
+    </div>
+
+    <div class="projects-grid">
+
+      <!-- Project 1 -->
+      <div class="project-card fade-up delay-1">
+        <div class="project-header">🍽️</div>
+        <div class="project-body">
+          <div class="project-tags">
+            <span class="tag">Machine Learning</span>
+            <span class="tag">Flask</span>
+            <span class="tag">Python</span>
+          </div>
+          <div class="project-name">Recipe Recommendation System</div>
+          <div class="project-problem">Business Problem</div>
+          <div class="project-desc">
+            Users waste time searching through thousands of recipes that don't match their available ingredients. This full-stack ML platform solves that by delivering hyper-relevant recipe suggestions in real time — reducing decision fatigue and food waste.
+          </div>
+          <div style="margin-top:1rem">
+            <div style="font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--text-muted);margin-bottom:.4rem">Approach</div>
+            <div style="font-size:.83rem;color:var(--text-2);line-height:1.6">Content-based filtering with TF-IDF vectorization and Cosine Similarity. RESTful Flask backend with responsive HTML/CSS/JS frontend.</div>
+          </div>
+          <div class="project-impact">✅ &gt;90% recommendation relevance accuracy in testing</div>
+          <div style="display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.75rem">
+            <span class="tag">TF-IDF</span><span class="tag">Cosine Similarity</span><span class="tag">REST API</span><span class="tag">HTML/CSS/JS</span>
+          </div>
+          <div class="project-actions">
+            <a href="https://github.com/manoj0816" target="_blank" class="btn btn-outline">GitHub</a>
+            <a href="#" class="btn btn-ghost">Case Study</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 2 -->
+      <div class="project-card fade-up delay-2">
+        <div class="project-header">📦</div>
+        <div class="project-body">
+          <div class="project-tags">
+            <span class="tag">XGBoost</span>
+            <span class="tag">Streamlit</span>
+            <span class="tag">Forecasting</span>
+          </div>
+          <div class="project-name">Demand Forecasting System</div>
+          <div class="project-problem">Business Problem</div>
+          <div class="project-desc">
+            Inaccurate demand forecasting leads to overstocking, stockouts, and lost revenue. This intelligent system analyzes historical sales data and market signals to predict future product demand, enabling proactive inventory management.
+          </div>
+          <div style="margin-top:1rem">
+            <div style="font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--text-muted);margin-bottom:.4rem">Approach</div>
+            <div style="font-size:.83rem;color:var(--text-2);line-height:1.6">XGBoost Regressor with comprehensive feature engineering. Interactive Streamlit dashboard with real-time prediction input and dynamic visualizations.</div>
+          </div>
+          <div class="project-impact">✅ 92% forecasting accuracy · Supports data-driven inventory planning</div>
+          <div style="display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.75rem">
+            <span class="tag">XGBoost</span><span class="tag">Pandas</span><span class="tag">NumPy</span><span class="tag">EDA</span><span class="tag">Streamlit</span>
+          </div>
+          <div class="project-actions">
+            <a href="https://github.com/manoj0816" target="_blank" class="btn btn-outline">GitHub</a>
+            <a href="#" class="btn btn-ghost">Case Study</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 3 -->
+      <div class="project-card fade-up delay-3">
+        <div class="project-header">💧</div>
+        <div class="project-body">
+          <div class="project-tags">
+            <span class="tag">Frontend</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">UI/UX</span>
+          </div>
+          <div class="project-name">Smart Bottle Product Launch Website</div>
+          <div class="project-problem">Business Problem</div>
+          <div class="project-desc">
+            A startup needed a high-converting product launch page for their smart hydration tracker that would work flawlessly across all devices and capture pre-launch interest.
+          </div>
+          <div style="margin-top:1rem">
+            <div style="font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--text-muted);margin-bottom:.4rem">Approach</div>
+            <div style="font-size:.83rem;color:var(--text-2);line-height:1.6">Mobile-first responsive design, modern UI animations, and optimized JavaScript interactions. Cross-browser compatibility with full accessibility compliance.</div>
+          </div>
+          <div class="project-impact">✅ Responsive across all devices · Optimized performance &amp; accessibility</div>
+          <div style="display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.75rem">
+            <span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">JavaScript</span><span class="tag">Responsive Design</span>
+          </div>
+          <div class="project-actions">
+            <a href="https://github.com/manoj0816" target="_blank" class="btn btn-outline">GitHub</a>
+            <a href="#" class="btn btn-ghost">Live Demo</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 4 -->
+      <div class="project-card fade-up delay-4">
+        <div class="project-header">✈️</div>
+        <div class="project-body">
+          <div class="project-tags">
+            <span class="tag">Frontend</span>
+            <span class="tag">UX Design</span>
+            <span class="tag">JavaScript</span>
+          </div>
+          <div class="project-name">Tripzio Travel Booking Platform</div>
+          <div class="project-problem">Business Problem</div>
+          <div class="project-desc">
+            Travellers struggle with cluttered booking platforms that make it difficult to discover packages and manage inquiries. Tripzio provides an intuitive, search-first experience that reduces booking friction.
+          </div>
+          <div style="margin-top:1rem">
+            <div style="font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--text-muted);margin-bottom:.4rem">Approach</div>
+            <div style="font-size:.83rem;color:var(--text-2);line-height:1.6">User-centric UI with interactive search and filtering. Fully responsive with smooth JavaScript-driven navigation and touch-optimized components.</div>
+          </div>
+          <div class="project-impact">✅ Seamless desktop, tablet &amp; mobile performance</div>
+          <div style="display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.75rem">
+            <span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">JavaScript</span><span class="tag">Filtering</span>
+          </div>
+          <div class="project-actions">
+            <a href="https://github.com/manoj0816" target="_blank" class="btn btn-outline">GitHub</a>
+            <a href="#" class="btn btn-ghost">Live Demo</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 5 -->
+      <div class="project-card fade-up delay-5">
+        <div class="project-header">💼</div>
+        <div class="project-body">
+          <div class="project-tags">
+            <span class="tag">Data Cleaning</span>
+            <span class="tag">Pandas project</span>
+            <span class="tag">EDA</span>
+          </div>
+          <div class="project-name">Employee Payroll &amp; Attendance Analysis</div>
+          <div class="project-problem">Business Problem</div>
+          <div class="project-desc">
+            Developed an Employee Payroll and Attendance Analysis project to process 4,000+ uncleaned employee records. Handled missing values, duplicates, inconsistent formats, and data type conversions to generate actionable HR insights.
+          </div>
+          <div style="margin-top:1rem">
+            <div style="font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--text-muted);margin-bottom:.4rem">Approach</div>
+            <div style="font-size:.83rem;color:var(--text-2);line-height:1.6">Comprehensive data cleaning and preprocessing with Pandas. Performed exploratory data analysis (EDA) and exported analysis-ready dataset for reporting and visualization.</div>
+          </div>
+          <div class="project-impact">✅ Cleaned 4,000+ records · Analysis-ready dataset for BI tools</div>
+          <div style="display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.75rem">
+            <span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">NumPy</span><span class="tag">Data Cleaning</span><span class="tag">EDA</span>
+          </div>
+          <div class="project-actions">
+            <a href="https://github.com/manoj0816" target="_blank" class="btn btn-outline">GitHub</a>
+            <a href="#" class="btn btn-ghost">Case Study</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 6 -->
+      <div class="project-card fade-up delay-6">
+        <div class="project-header">📊</div>
+        <div class="project-body">
+          <div class="project-tags">
+            <span class="tag">Power BI</span>
+            <span class="tag">Social Media Analytics</span>
+            <span class="tag">Dashboard</span>
+          </div>
+          <div class="project-name">Facebook &amp; Instagram Analysis</div>
+          <div class="project-problem">Business Problem</div>
+          <div class="project-desc">
+            Social media teams struggle to extract actionable insights from fragmented data across platforms. This comprehensive Power BI dashboard consolidates Facebook and Instagram performance metrics, enabling data-driven marketing decisions and ROI optimization.
+          </div>
+          <div style="margin-top:1rem">
+            <div style="font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--text-muted);margin-bottom:.4rem">Approach</div>
+            <div style="font-size:.83rem;color:var(--text-2);line-height:1.6">Integrated multi-source social media data into Power BI. Created interactive dashboards with KPI tracking, engagement metrics, audience insights, and campaign performance analysis for real-time monitoring.</div>
+          </div>
+          <div class="project-impact">✅ Real-time social analytics · Enhanced marketing ROI visibility</div>
+          <div style="display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.75rem">
+            <span class="tag">Power BI</span><span class="tag">DAX</span><span class="tag">Data Integration</span><span class="tag">Analytics</span><span class="tag">Visualization</span>
+          </div>
+          <div class="project-actions">
+            <a href="https://github.com/manoj0816" target="_blank" class="btn btn-outline">GitHub</a>
+            <a href="#" class="btn btn-ghost">View Dashboard</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CERTIFICATIONS
+     ============================================================ -->
+<section id="certifications">
+  <div class="container">
+    <div class="section-header fade-up">
+      <div class="section-eyebrow">Credentials</div>
+      <h2 class="section-title">Certifications</h2>
+      <p class="section-sub">Verified learning milestones from industry-recognised providers.</p>
+    </div>
+    <div class="certs-grid">
+
+      <div class="cert-card fade-up delay-1">
+        <div class="cert-badge">🤖</div>
+        <div class="cert-title">Machine Learning Internship Certificate</div>
+        <div class="cert-provider">Cognifyz Technologies</div>
+        <div class="cert-year">2025</div>
+        <div class="cert-desc">Practical machine learning experience covering data preprocessing, feature engineering, model development, and predictive analytics in a real-world setting.</div>
+      </div>
+
+      <div class="cert-card fade-up delay-2">
+        <div class="cert-badge">📊</div>
+        <div class="cert-title">Power BI Certification</div>
+        <div class="cert-provider">E-Learning Platform</div>
+        <div class="cert-year">2025</div>
+        <div class="cert-desc">Developed skills in data visualization, interactive dashboard creation, business intelligence reporting, and KPI tracking using Microsoft Power BI.</div>
+      </div>
+
+      <div class="cert-card fade-up delay-3">
+        <div class="cert-badge">🔬</div>
+        <div class="cert-title">Introduction to Data Science</div>
+        <div class="cert-provider">Infosys Springboard</div>
+        <div class="cert-year">2024</div>
+        <div class="cert-desc">Foundational concepts of data analysis, statistical methods, data wrangling, and machine learning workflows.</div>
+      </div>
+
+      <div class="cert-card fade-up delay-4">
+        <div class="cert-badge">🧠</div>
+        <div class="cert-title">Introduction to Deep Learning</div>
+        <div class="cert-provider">Infosys Springboard</div>
+        <div class="cert-year">2024</div>
+        <div class="cert-desc">Neural network architectures, training strategies, CNN implementation, and modern AI application development concepts.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     ACHIEVEMENTS
+     ============================================================ -->
+<section id="achievements">
+  <div class="container">
+    <div class="section-header fade-up">
+      <div class="section-eyebrow">Recognition</div>
+      <h2 class="section-title">Achievements &amp; Highlights</h2>
+    </div>
+    <div class="achievements-grid">
+      <div class="ach-card fade-up delay-1">
+        <span class="ach-icon">🎯</span>
+        <div class="ach-title">92% ML Accuracy</div>
+        <div class="ach-desc">Achieved 92% forecasting accuracy on Demand Forecasting System test dataset using XGBoost Regressor.</div>
+      </div>
+      <div class="ach-card fade-up delay-2">
+        <span class="ach-icon">⭐</span>
+        <div class="ach-title">90%+ Recommendation Relevance</div>
+        <div class="ach-desc">Recipe Recommendation System delivered &gt;90% recommendation relevance accuracy in end-to-end testing.</div>
+      </div>
+      <div class="ach-card fade-up delay-3">
+        <span class="ach-icon">🏅</span>
+        <div class="ach-title">ML Industry Internship</div>
+        <div class="ach-desc">Selected for ML Internship at Cognifyz Technologies, delivering two production-quality ML solutions.</div>
+      </div>
+      <div class="ach-card fade-up delay-4">
+        <span class="ach-icon">📜</span>
+        <div class="ach-title">4 Professional Certifications</div>
+        <div class="ach-desc">Earned certifications in ML, Power BI, Data Science, and Deep Learning from leading industry platforms.</div>
+      </div>
+      <div class="ach-card fade-up delay-1">
+        <span class="ach-icon">🎓</span>
+        <div class="ach-title">CGPA 7.73 / 10</div>
+        <div class="ach-desc">Consistently strong academic performance across the 4-year B.Tech IT program at Mahendra Institute of Technology.</div>
+      </div>
+      <div class="ach-card fade-up delay-2">
+        <span class="ach-icon">🔗</span>
+        <div class="ach-title">4 Deployed Projects</div>
+        <div class="ach-desc">Built and deployed four end-to-end solutions spanning ML, data analytics, and full-stack web development.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CONTACT
+     ============================================================ -->
+<section id="contact">
+  <div class="container">
+    <div class="section-header fade-up">
+      <div class="section-eyebrow">Let's Connect</div>
+      <h2 class="section-title">Open to Opportunities</h2>
+      <p class="section-sub">Actively looking for Data Analyst, ML Engineer, and BI Developer roles. Reach out and let's talk.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info fade-up">
+        <p>I'm currently seeking full-time roles, internships, and freelance data analytics projects. Whether you're from a Fortune 500 or an exciting startup, I'd love to hear from you.</p>
+        <div class="contact-links">
+          <a href="mailto:smanoj08162004@gmail.com" class="contact-link">
+            <div class="contact-link-icon">📧</div>
+            <div>
+              <div class="contact-link-label">Email</div>
+              <div class="contact-link-value">smanoj08162004@gmail.com</div>
+            </div>
+          </a>
+          <a href="tel:+918111010353" class="contact-link">
+            <div class="contact-link-icon">📱</div>
+            <div>
+              <div class="contact-link-label">Phone</div>
+              <div class="contact-link-value">+91 81110 10353</div>
+            </div>
+          </a>
+          <a href="https://linkedin.com/in/manojkumar0816" target="_blank" class="contact-link">
+            <div class="contact-link-icon">💼</div>
+            <div>
+              <div class="contact-link-label">LinkedIn</div>
+              <div class="contact-link-value">linkedin.com/in/manojkumar0816</div>
+            </div>
+          </a>
+          <a href="https://github.com/manoj0816" target="_blank" class="contact-link">
+            <div class="contact-link-icon">🐙</div>
+            <div>
+              <div class="contact-link-label">GitHub</div>
+              <div class="contact-link-value">github.com/manoj0816</div>
+            </div>
+          </a>
+          <div class="contact-link" style="cursor:default">
+            <div class="contact-link-icon">📍</div>
+            <div>
+              <div class="contact-link-label">Location</div>
+              <div class="contact-link-value">Chennai, Tamil Nadu, India</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="fade-up delay-2">
+        <div class="contact-form" id="contact-form">
+          <div class="form-group">
+            <label for="cf-name">Full Name</label>
+            <input class="form-input" type="text" id="cf-name" placeholder="Jane Smith" autocomplete="name"/>
+          </div>
+          <div class="form-group">
+            <label for="cf-email">Email Address</label>
+            <input class="form-input" type="email" id="cf-email" placeholder="jane@company.com" autocomplete="email"/>
+          </div>
+          <div class="form-group">
+            <label for="cf-company">Company / Organisation</label>
+            <input class="form-input" type="text" id="cf-company" placeholder="Accenture, Google, ..."/>
+          </div>
+          <div class="form-group">
+            <label for="cf-subject">Subject</label>
+            <input class="form-input" type="text" id="cf-subject" placeholder="Data Analyst Role – Full Time"/>
+          </div>
+          <div class="form-group">
+            <label for="cf-message">Message</label>
+            <textarea class="form-input" id="cf-message" placeholder="Tell me about the role or project…"></textarea>
+          </div>
+          <p class="form-note">📌 This form demo opens your email client. For direct contact, use the links on the left.</p>
+          <button class="btn btn-primary" onclick="submitForm()" style="width:100%;justify-content:center;padding:1rem">
+            Send Message →
+          </button>
+          <div class="form-success" id="form-success">✅ Message drafted! Your email client should open now.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-logo">Manojkumar S</div>
+      <div class="footer-links">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#certifications">Certs</a>
+        <a href="#contact">Contact</a>
+        <a href="https://github.com/manoj0816" target="_blank">GitHub</a>
+        <a href="https://linkedin.com/in/manojkumar0816" target="_blank">LinkedIn</a>
+      </div>
+    </div>
+    <div class="footer-copy" style="padding-top:1.5rem;border-top:1px solid var(--border);margin-top:1rem">
+      © 2026 Manojkumar S · Built with HTML, CSS &amp; JavaScript · Chennai, Tamil Nadu
+    </div>
+  </div>
+</footer>
+
+<!-- BACK TO TOP -->
+<button class="back-top" id="back-top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<!-- ============================================================
+     JAVASCRIPT
+     ============================================================ -->
+<script>
+/* ------- LOADER ------- */
+window.addEventListener('load',()=>{
+  setTimeout(()=>document.getElementById('loader').classList.add('hidden'),1800)
+});
+
+/* ------- SCROLL PROGRESS ------- */
+window.addEventListener('scroll',()=>{
+  const p=document.getElementById('scroll-progress');
+  const s=document.documentElement.scrollTop;
+  const h=document.documentElement.scrollHeight-document.documentElement.clientHeight;
+  p.style.width=(s/h*100)+'%';
+  // navbar
+  const nav=document.getElementById('navbar');
+  nav.classList.toggle('scrolled',s>20);
+  // back to top
+  document.getElementById('back-top').classList.toggle('visible',s>400);
+  // active nav link
+  const sections=['hero','about','skills','experience','projects','certifications','contact'];
+  let current='';
+  sections.forEach(id=>{
+    const el=document.getElementById(id);
+    if(el&&el.getBoundingClientRect().top<=100)current=id;
+  });
+  document.querySelectorAll('.nav-links a').forEach(a=>{
+    a.classList.toggle('active',a.getAttribute('href')==='#'+current);
+  });
+});
+
+/* ------- DARK MODE ------- */
+const html=document.documentElement;
+const btn=document.getElementById('theme-toggle');
+function setTheme(t){html.setAttribute('data-theme',t);btn.textContent=t==='dark'?'☀️':'🌙';localStorage.setItem('theme',t)}
+const saved=localStorage.getItem('theme')||( window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+setTheme(saved);
+btn.addEventListener('click',()=>setTheme(html.getAttribute('data-theme')==='dark'?'light':'dark'));
+
+/* ------- HAMBURGER ------- */
+document.getElementById('hamburger').addEventListener('click',function(){
+  const m=document.getElementById('mobile-menu');
+  m.classList.toggle('open');
+});
+function closeMobile(){document.getElementById('mobile-menu').classList.remove('open')}
+
+/* ------- TYPING ANIMATION ------- */
+const phrases=['Data Analyst','ML Engineer','BI Developer','Python Developer','Problem Solver'];
+let pi=0,ci=0,del=false;
+const el=document.getElementById('typed-text');
+function type(){
+  const word=phrases[pi];
+  if(!del){
+    el.textContent=word.substring(0,ci+1);ci++;
+    if(ci===word.length){del=true;setTimeout(type,2000);return}
+  }else{
+    el.textContent=word.substring(0,ci-1);ci--;
+    if(ci===0){del=false;pi=(pi+1)%phrases.length}
+  }
+  setTimeout(type,del?60:90);
+}
+setTimeout(type,2200);
+
+/* ------- INTERSECTION OBSERVER (fade-up & skill bars) ------- */
+const observer=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('visible');
+      // skill bars
+      e.target.querySelectorAll&&e.target.querySelectorAll('.skill-fill').forEach(b=>{
+        b.style.width=b.dataset.width+'%';
+      });
+    }
+  });
+},{threshold:0.12});
+document.querySelectorAll('.fade-up,.fade-in').forEach(el=>observer.observe(el));
+
+// Also trigger skill bar fills when skill-category cards enter view
+const skillObs=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.querySelectorAll('.skill-fill').forEach(b=>{b.style.width=b.dataset.width+'%'});
+    }
+  });
+},{threshold:0.2});
+document.querySelectorAll('.skill-category').forEach(c=>skillObs.observe(c));
+
+/* ------- COUNT UP ------- */
+function animateCount(el){
+  const target=+el.dataset.count;
+  const suffix=el.dataset.suffix||'';
+  const dur=1800,step=16;
+  let current=0;
+  const inc=target/(dur/step);
+  const timer=setInterval(()=>{
+    current=Math.min(current+inc,target);
+    el.textContent=Math.floor(current)+suffix;
+    if(current>=target)clearInterval(timer);
+  },step);
+}
+const countObs=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting){animateCount(e.target);countObs.unobserve(e.target)}});
+},{threshold:.5});
+document.querySelectorAll('[data-count]').forEach(el=>countObs.observe(el));
+
+/* ------- CHARTS ------- */
+function initCharts(){
+  const isDark=html.getAttribute('data-theme')==='dark';
+  const gridColor=isDark?'rgba(255,255,255,.08)':'rgba(0,0,0,.07)';
+  const labelColor=isDark?'#8b949e':'#6b7280';
+  Chart.defaults.font.family="'Inter',sans-serif";
+
+  // Pie
+  const pie=document.getElementById('skillPieChart');
+  if(pie&&!pie._chartjs){
+    new Chart(pie,{
+      type:'doughnut',
+      data:{
+        labels:['Data Analysis','Machine Learning','BI & Visualization','Databases','Web Dev'],
+        datasets:[{
+          data:[28,25,22,12,13],
+          backgroundColor:['#1a56db','#7c3aed','#06b6d4','#10b981','#f59e0b'],
+          borderWidth:0,hoverOffset:6
+        }]
+      },
+      options:{
+        responsive:true,maintainAspectRatio:true,
+        plugins:{legend:{position:'bottom',labels:{color:labelColor,padding:12,font:{size:11}}}}
+      }
+    });
+  }
+
+  // Radar
+  const radar=document.getElementById('skillRadarChart');
+  if(radar&&!radar._chartjs){
+    new Chart(radar,{
+      type:'radar',
+      data:{
+        labels:['Python','SQL','EDA','ML Models','Power BI','Data Viz','Feature Eng.'],
+        datasets:[{
+          label:'Proficiency',
+          data:[90,85,85,84,80,86,80],
+          backgroundColor:'rgba(26,86,219,.15)',
+          borderColor:'#1a56db',
+          borderWidth:2,
+          pointBackgroundColor:'#7c3aed',
+          pointRadius:4
+        }]
+      },
+      options:{
+        responsive:true,maintainAspectRatio:true,
+        scales:{r:{
+          grid:{color:gridColor},
+          pointLabels:{color:labelColor,font:{size:11}},
+          ticks:{display:false},
+          min:60,max:100
+        }},
+        plugins:{legend:{display:false}}
+      }
+    });
+  }
+}
+// init after charts section is visible
+const chartObs=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting){initCharts();chartObs.unobserve(e.target)}});
+},{threshold:.1});
+const skillsSection=document.getElementById('skills');
+if(skillsSection)chartObs.observe(skillsSection);
+
+/* ------- CONTACT FORM ------- */
+function submitForm(){
+  const name=document.getElementById('cf-name').value.trim();
+  const email=document.getElementById('cf-email').value.trim();
+  const subj=document.getElementById('cf-subject').value.trim()||'Portfolio Enquiry';
+  const msg=document.getElementById('cf-message').value.trim();
+  if(!name||!email){alert('Please fill in your name and email.');return}
+  const body=`Hi Manojkumar,\n\nName: ${name}\nEmail: ${email}\n\n${msg}`;
+  window.location.href=`mailto:smanoj08162004@gmail.com?subject=${encodeURIComponent(subj)}&body=${encodeURIComponent(body)}`;
+  document.getElementById('form-success').style.display='block';
+}
+
+/* ------- RESUME DOWNLOAD PLACEHOLDER ------- */
+document.getElementById('dl-resume').addEventListener('click',function(e){
+  e.preventDefault();
+  alert('📄 To enable resume download, place your resume PDF at assets/documents/Manojkumar_Resume.pdf and update this button\'s href.');
+});
+
+/* ------- CARD TILT ------- */
+document.querySelectorAll('.project-card').forEach(card=>{
+  card.addEventListener('mousemove',e=>{
+    const r=card.getBoundingClientRect();
+    const x=(e.clientX-r.left)/r.width-.5;
+    const y=(e.clientY-r.top)/r.height-.5;
+    card.style.transform=`translateY(-5px) rotateY(${x*6}deg) rotateX(${-y*4}deg)`;
+  });
+  card.addEventListener('mouseleave',()=>{card.style.transform=''});
+});
+</script>
+</body>
+</html>
